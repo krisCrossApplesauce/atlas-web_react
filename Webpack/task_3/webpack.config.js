@@ -13,12 +13,18 @@ module.exports = {
         path: path.resolve(__dirname, 'public'),
         filename: '[name].bundle.js',
     },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
+    },
     devtool: 'inline-source-map',
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin(),
     ],
     devServer: {
+        contentBase: path.join(__dirname, './public'),
         static: {
             directory: path.join(__dirname, 'public'),
         },

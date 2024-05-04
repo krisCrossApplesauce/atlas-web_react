@@ -1,0 +1,11 @@
+.Notifications {
+    border: ridge #1ed2ac;
+    padding: 0px 20px;
+    margin: 10px;
+    background-color: #fff8e6;
+    font-family: sans-serif;
+    color: #00003c;
+}
+
+[data-priority="default"] { color: #0000ba; }
+[data-priority="urgent"] { color: #e11d3f; }

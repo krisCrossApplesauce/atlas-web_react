@@ -11,6 +11,10 @@ module.exports = {
         } else {
             return 'Atlas School main dashboard';
         }
-    }
+    },
+
+    getLatestNotification: () => {
+        return '<strong>Urgent requirement</strong> - complete by EOD';
+    },
 
 };

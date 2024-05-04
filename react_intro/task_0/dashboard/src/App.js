@@ -1,11 +1,12 @@
-import logo from './holberton-logo.jpg';
+import logo from './atlas-logo.jpg';
+// import icon from './favicon.ico';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="holberton logo" />
+        <img src={logo} className="App-logo" alt="atlas logo" />
         <h1>School dashboard</h1>
       </header>
       <body className="App-body">

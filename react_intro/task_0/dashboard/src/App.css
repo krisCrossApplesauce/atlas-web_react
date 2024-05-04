@@ -1,5 +1,11 @@
 .App {
   font-family: sans-serif;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #00003C;
 }
 
 .App, .App-header, .App-footer {
@@ -10,12 +16,13 @@
 .App-header {
   display: flex;
   align-items: center;
-  border-bottom: solid #e0354b;
+  border-bottom: solid #1ed2ac;
 }
 
 .App-header h1 {
   display: inline;
-  color: #e0354b;
+  margin-left: 15px;
+  color: #1ed2ac;
 }
 
 .App-logo {
@@ -25,13 +32,15 @@
 
 .App-body {
   margin: 50px;
+  color: white;
 }
 
 .App-footer {
   position: fixed;
   bottom: 0;
-  width: calc(100vw - 16px);
-  border-top: solid #e0354b;
+  width: 100vw;
+  border-top: solid #1ed2ac;
+  color: white;
   font-style: italic;
   text-align: center;
 }

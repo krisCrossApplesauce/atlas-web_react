@@ -1,5 +1,4 @@
 const path = require('path');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -17,9 +16,6 @@ module.exports = {
         compress: true,
         port: 8564,
     },
-    // plugins: [
-    //     new HtmlWebpackPlugin(),
-    // ],
     module: {
         rules: [
             {

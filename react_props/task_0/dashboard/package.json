@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "build": "webpack --config ./config/webpack.config.js",
-    "start": "webpack-dev-server --mode development --config ./config/webpack.config.js"
+    "start": "webpack-dev-server --mode development --config ./config/webpack.config.js",
+    "open": "webpack-dev-server --open --mode development --config ./config/webpack.config.js"
   },
   "keywords": [],
   "author": "",

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 // import './index.css';
 import App from './App/App.js';
-import Notifications from './Notifications/Notifications.js';
 // import reportWebVitals from './reportWebVitals';
 import './index.css';
 
@@ -10,9 +9,6 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <div className="container">
-      <div className="root-notifications">
-        <Notifications />
-      </div>
       <App />
     </div>
   </React.StrictMode>

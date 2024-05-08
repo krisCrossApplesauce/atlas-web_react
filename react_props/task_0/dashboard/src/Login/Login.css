@@ -1,0 +1,33 @@
+form { display: flex; }
+.inputContainer { margin-right: 30px; }
+form button {
+  margin-top: auto;
+  background-color: white;
+  border-radius: 1.5px;
+  border: 2.5px solid white;
+  font-weight: normal;
+  color: #00003c;
+}
+form button:hover {
+  background-color: #fff8e6;
+  border-color: #fff8e6;
+  /* outline: 1.7px solid #00003c;
+  outline-offset: -3px; */
+  /* outline-radius: 1.5px; this doesn't exist unfortunately */
+  color: #00003c;
+  font-weight: bold;
+}
+label { color: #1ed2ac; }
+input {
+  background-color: white;
+  border-color: white;
+  border-style: solid;
+  border-radius: 1.5px;
+  color: #00003c;
+}
+input:focus {
+  background-color: #fff8e6;
+  outline: none;
+  /* outline-color: #00003c; */
+  color: #00003c;
+}

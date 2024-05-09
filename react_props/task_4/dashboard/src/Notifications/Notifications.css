@@ -1,7 +1,17 @@
+.menuItem {
+  width: calc(100% - 15px);
+  margin: 10px 10px -5px 0px;
+  font-family: sans-serif;
+  color: #1ed2ac;
+  text-align: right;
+  white-space: nowrap;
+}
+
 .Notifications {
   border: ridge #1ed2ac;
-  padding: 0px 20px;
+  padding: 0px 16px 0px 20px;
   margin: 10px;
+  margin-right: 15px;
   background-color: #fff8e6;
   font-family: sans-serif;
   color: #00003c;
@@ -16,6 +26,10 @@ button {
 button:hover {
   background-color: #eee7d5;
   color: #00002b;
+}
+
+li {
+  margin-right: 50px;
 }
 
 /* [data-priority="default"] { color: #0000a9; }

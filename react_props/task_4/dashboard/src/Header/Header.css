@@ -3,7 +3,7 @@
   align-items: center;
   margin: 0;
   padding: 0;
-  border-bottom: solid #1ed2ac;
+  /* border-bottom: solid #1ed2ac; */
 }
 .App-header h1 {
   display: inline;

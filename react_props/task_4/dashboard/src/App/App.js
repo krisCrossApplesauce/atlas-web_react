@@ -15,14 +15,16 @@ function App(props) {
 
   return (
     <>
-      <div className="root-notifications">
-        <Notifications />
-      </div>
       <div className="App">
-        <Header />
-        <body className="App-body">
+        <div className="header-notifications">
+          <Header />
+          <div className="root-notifications">
+            <Notifications />
+          </div>
+        </div>
+        <div className="App-body">
           {bodyContent}
-        </body>
+        </div>
         <Footer />
       </div>
     </>

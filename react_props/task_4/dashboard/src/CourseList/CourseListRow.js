@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './CourseList.css';
 
 function CourseListRow(props) {
   let content = (

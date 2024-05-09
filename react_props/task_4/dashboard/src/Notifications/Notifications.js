@@ -9,7 +9,7 @@ function Notifications(props) {
   if (props.displayDrawer === true) {
     notifications = (
       <div className="Notifications">
-      <button style={{position: 'absolute', right: '12px'}} aria-label="Close" onClick={() => {console.log('Close button has been clicked')}}>x</button>
+      <button style={{'margin-left': 'calc(100% - 10px)'}} aria-label="Close" onClick={() => {console.log('Close button has been clicked')}}>x</button>
       <p>Here is the list of notifications</p>
       <ul>
         <NotificationItem type="default" value="New course available" />

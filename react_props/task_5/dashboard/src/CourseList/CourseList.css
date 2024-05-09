@@ -1,0 +1,19 @@
+#CourseList {
+    width: 100%;
+    outline: 1px solid #eee7d5;
+    text-align: left;
+    color: #eee7d5;
+}
+
+th[colSpan="2"] {
+    text-align: center;
+}
+
+th {
+    border-bottom: 2px solid #eee7d5;
+    color: #1ed2ac;
+}
+
+/* td {
+    outline: 1px solid white;
+} */

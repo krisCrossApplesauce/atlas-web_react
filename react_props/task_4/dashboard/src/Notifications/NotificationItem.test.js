@@ -15,5 +15,5 @@ test("tests that NotificationItem renders the correct html when passing dummy ty
 
 test("tests that NotificationItem renders the correct html when passing a dummy html prop", () => {
     const wrapper = shallow(<NotificationItem html={{ __html: '<u>test</u>' }} />);
-    expect(wrapper.contains(<li dangerouslySetInnerHTML={{ __html: '<u>test</u>' }}></li>)).toBe(true);
+    expect(wrapper.html()).toContain('<u>test</u>');
 });

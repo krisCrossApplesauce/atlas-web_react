@@ -22,6 +22,7 @@ function Notifications(props) {
       console.log(props.listNotifications[i]);
       notificationItems += <NotificationItem type={props.listNotifications[i].type} html={props.listNotifications[i].html} value={props.listNotifications[i].value} />;
       console.log(notificationItems);
+      // don't forget to take out the console.logs :P
     }
   }
 

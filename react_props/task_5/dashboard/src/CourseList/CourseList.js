@@ -9,8 +9,10 @@ function CourseList(props) {
   if (props.listCourses == []) {
     rows = <CourseListRow textFirstCell="No course available yet" />;
   } else {
-    for (i = 0; i < props.listCourses.length(); i += 1) {
+    rows = <></>;
+    for (let i = 0; i < props.listCourses.length; i += 1) {
       // code stuff here, iterate through shape object
+      rows += <CourseListRow textFirstCell={props.listCourses[i].name} textSecondCell={props.listCourses[i].credit} />;
     }
   }
   return (
@@ -21,13 +23,13 @@ function CourseList(props) {
       </thead>
       <tbody>
         {rows}
-        <CourseListRow textFirstCell="ES6" textSecondCell="60" isHeader={false} />
-        <CourseListRow textFirstCell="Webpack" textSecondCell="20" isHeader={false} />
-        <CourseListRow textFirstCell="React" textSecondCell="40" isHeader={false} />
       </tbody>
     </table>
   );
 }
+{/* <CourseListRow textFirstCell="ES6" textSecondCell="60" isHeader={false} />
+<CourseListRow textFirstCell="Webpack" textSecondCell="20" isHeader={false} />
+<CourseListRow textFirstCell="React" textSecondCell="40" isHeader={false} /> */}
 
 CourseList.defaultProps = {
   listCourses: [],

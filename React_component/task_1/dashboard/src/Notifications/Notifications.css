@@ -1,0 +1,39 @@
+.menuItem {
+  width: calc(100% - 15px);
+  margin: 10px 10px -5px 0px;
+  font-family: sans-serif;
+  color: #1ed2ac;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.Notifications {
+  border: ridge #1ed2ac;
+  padding: 0px 16px 0px 20px;
+  margin: 10px;
+  margin-right: 15px;
+  background-color: #fff8e6;
+  font-family: sans-serif;
+  color: #00003c;
+}
+
+button {
+  font-weight: bold;
+  background-color: #fff8e6;
+  border: 2.5px ridge #1ed2ac;
+  margin: 1.6px 1.5px 0px 0px;
+}
+button:hover {
+  background-color: #eee7d5;
+  color: #00002b;
+}
+
+li {
+  margin-right: 50px;
+}
+
+/* [data-priority="default"] { color: #0000a9; }
+[data-priority="urgent"] { color: #e11d3f; } */
+/* weird that they changed it from data-priority to data-notification-type, but ok I guess */
+[data-notification-type="default"] { color: #0000a9; }
+[data-notification-type="urgent"] { color: #e11d3f; }

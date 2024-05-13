@@ -12,6 +12,21 @@ import PropTypes from 'prop-types';
 // replace this with the commented out stuff below to see if everything
 // looks alright with stuff in the notifications and course list stuff
 class App extends Component {
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown);
+  }
+
+  handleKeyDown = (e) => {
+    if (e.ctrlKey && e.key === "h") {
+      alert("Logging you out");
+      this.props.logOut();
+    }
+  };
+
   render() {
     return (
       <>
@@ -44,35 +59,16 @@ class App extends Component {
 //   {id: 3, html: {__html: getLatestNotification()}, type: "urgent"}
 // ];
 
-// class App extends Component {
-//   render() {
-//     return (
-//       <>
-//         <div className="App">
-//           <div className="header-notifications">
-//             <Header />
-//             <div className="root-notifications">
-//               <Notifications listNotifications={listNotifications} />
-//             </div>
-//           </div>
-//           <div className="App-body">
-//             {isLoggedIn === false ? (<Login />) : (<CourseList listCourses={listCourses} />)}
-//           </div>
-//           <Footer />
-//         </div>
-//       </>
-//     );
-//   }
-// }
-
 App.defaultProps = {
   isLoggedIn: false,
+  logOut: () => {},
 }
 
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
   listCourses: PropTypes.arrayOf(CourseShape),
   listNotifications: PropTypes.arrayOf(NotificationItemShape),
+  logOut: PropTypes.function,
 };
 
 export default App;

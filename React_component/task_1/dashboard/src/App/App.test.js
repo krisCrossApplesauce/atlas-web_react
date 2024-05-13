@@ -49,3 +49,4 @@ test("tests that App calls the logOut function (which is passed as a prop) and t
     const wrapper = shallow(<App />);
     expect().toBe(true);
 });
+// unfinished test^

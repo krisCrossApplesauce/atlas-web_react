@@ -14,11 +14,6 @@ import PropTypes from 'prop-types';
 // ^do need to change this.props.listNotifications and this.props.listCourses
 // to listNotifications and listCourses for it to work :P
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.handleKeyDown = this.handleKeyDown.bind(this);
-  }
-
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown);
   }

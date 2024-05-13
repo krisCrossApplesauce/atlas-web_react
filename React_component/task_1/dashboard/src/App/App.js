@@ -11,7 +11,14 @@ import PropTypes from 'prop-types';
 
 // replace this with the commented out stuff below to see if everything
 // looks alright with stuff in the notifications and course list stuff
+// ^do need to change this.props.listNotifications and this.props.listCourses
+// to listNotifications and listCourses for it to work :P
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
+
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown);
   }
@@ -68,7 +75,7 @@ App.propTypes = {
   isLoggedIn: PropTypes.bool,
   listCourses: PropTypes.arrayOf(CourseShape),
   listNotifications: PropTypes.arrayOf(NotificationItemShape),
-  logOut: PropTypes.function,
+  logOut: PropTypes.func,
 };
 
 export default App;

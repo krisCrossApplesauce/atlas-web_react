@@ -7,6 +7,15 @@ import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
 import CourseList from '../CourseList/CourseList';
 
+global.document = {
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+};
+
+global.window = {
+    alert: jest.fn(),
+};
+
 test("tests that App renders without crashing", () => {
     const wrapper = shallow(<App />);
     expect(wrapper.exists()).toBe(true);
@@ -46,7 +55,17 @@ test("tests that App contains Footer", () => {
 });
 
 test("tests that App calls the logOut function (which is passed as a prop) and the alert function is called with the correct string when the keys control and h are pressed", () => {
-    const wrapper = shallow(<App />);
-    expect().toBe(true);
+    const logOutMock = jest.fn();
+    const alertMock = jest.spyOn(global.window, 'alert').mockImplementation(() => {});
+
+    const wrapper = shallow(<App logOut={logOutMock} />);
+
+    const event = new KeyboardEvent('keydown', { key: 'h', ctrlKey: true });
+
+    global.document.dispatchEvent(event);
+
+    expect(logOutMock).toHaveBeenCalled();
+    expect(alertMock).toHaveBeenCalledWith('Logging you out');
+
+    alertMock.mockRestore();
 });
-// unfinished test^

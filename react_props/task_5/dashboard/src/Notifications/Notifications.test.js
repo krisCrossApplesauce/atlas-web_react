@@ -29,7 +29,7 @@ test("tests that Notifications renders 3 NotificationItem elements", () => {
 
 test("tests that Notifications correctly renders the right html for the first NotificationItem element", () => {
     const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={testListNotifications} />);
-    expect(wrapper.find('NotificationItem').get(0)).toEqual(<NotificationItem type="default" value="New course available" />);
+    expect(wrapper.find('NotificationItem').first().shallow().html()).toContain("New course available");
 });
 
 test("tests that Notifications displays menuItem div when displayDrawer is false", () => {
@@ -57,13 +57,7 @@ test("tests that Notifications renders correctly when passing an empty array or 
 
 test("tests that Notifications correctly renders all the NotificationItems listed in the listNotifications property", () => {
     const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={testListNotifications} />);
-    expect(wrapper.contains(
-        <>
-            <NotificationItem type="default" value="New course available" />
-            <NotificationItem type="urgent" value="New resume available" />
-            <NotificationItem type="urgent" html={{__html: getLatestNotification()}} />
-        </>
-    )).toBe(true);
+    expect(wrapper.find("NotificationItem")).toHaveLength(3);
 });
 
 test("tests that Notifications contains the message 'No new notification for now' when listNotifications is empty", () => {

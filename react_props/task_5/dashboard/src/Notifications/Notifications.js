@@ -6,42 +6,29 @@ import NotificationItemShape from './NotificationItemShape.js';
 import PropTypes from 'prop-types';
 
 function Notifications(props) {
-  let notifications;
-  let notificationItems;
-  console.log(props.listNotifications);
-  if (props.listNotifications == []) {
-    notificationItems = <p>No new notification for now</p>;
-  } else {
-    notificationItems = (
-      <>
-        <p>Here is the list of notifications</p>
-        <ul></ul>
-      </>
-    );
-    for (let i = 0; i < props.listNotifications.length; i += 1) {
-      console.log(props.listNotifications[i]);
-      notificationItems += <NotificationItem type={props.listNotifications[i].type} html={props.listNotifications[i].html} value={props.listNotifications[i].value} />;
-      console.log(notificationItems);
-      // don't forget to take out the console.logs :P
-    }
-  }
-
-  if (props.displayDrawer === true) {
-    notifications = (
-      <div className="Notifications">
-      <button style={{'margin-left': 'calc(100% - 10px)'}} aria-label="Close" onClick={() => {console.log('Close button has been clicked')}}>x</button>
-      {notificationItems}
-    </div>
-    );
-  }
   return (
     <>
       <div className="menuItem">Your notifications</div>
-      {notifications}
+      {props.displayDrawer && (
+        <div className="Notifications">
+          <button style={{'margin-left': 'calc(100% - 10px)'}} aria-label="Close" onClick={() => {console.log('Close button has been clicked')}}>x</button>
+          {props.listNotifications.length === 0 ? (
+            <p>No new notification for now</p>
+          ) : (
+            <>
+              <p>Here is the list of notifications</p>
+              <ul>
+                {props.listNotifications.map((notification) => (
+                  <NotificationItem key={notification.id} html={notification.html} type={notification.type} value={notification.value} />
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
+      )}
     </>
   );
 }
-{/* <p>Here is the list of notifications</p> */}
 
 Notifications.defaultProps = {
   displayDrawer: false,

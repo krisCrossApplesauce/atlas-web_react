@@ -1,7 +1,7 @@
 import { Component } from 'react';
 
-function withLogging(WrappedComponent) {
-    class WithLogging extends Component {
+function WithLogging(WrappedComponent) {
+    class withLogging extends Component {
 
         componentDidMount() {
             console.log(`Component ${WrappedComponent.displayName || WrappedComponent.name || 'Component'} is mounted`);
@@ -12,9 +12,9 @@ function withLogging(WrappedComponent) {
         }
     }
 
-    WithLogging.displayName = `withLogging(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
+    withLogging.displayName = `withLogging(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
 
-    return WithLogging;
+    return withLogging;
 }
 
-export default withLogging;
+export default WithLogging;

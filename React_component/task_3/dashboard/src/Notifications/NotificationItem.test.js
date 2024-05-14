@@ -9,13 +9,12 @@ test("tests that NotificationItem renders without crashing", () => {
 });
 
 test("tests that NotificationItem renders the correct html when passing dummy type and value props", () => {
-    const wrapper = shallow(<NotificationItem type="default" value="test" />);
-    expect(wrapper.contains(<li data-notification-type="default">test</li>)).toBe(true);
+    const wrapper = shallow(<NotificationItem type='default' value="test" />);
+    expect(wrapper.contains(<li data-notification-type='default'>test</li>)).toBe(true);
 });
-
 test("tests that NotificationItem renders the correct html when passing a dummy html prop", () => {
     const wrapper = shallow(<NotificationItem html={{ __html: '<u>test</u>' }} />);
-    expect(wrapper.html()).toContain('<u>test</u>');
+    expect(wrapper.html().find('li')).toContain(<u>test</u>);
 });
 
 test("tests that NotificationItem checks that the markAsRead property works I guess", () => {
@@ -23,7 +22,7 @@ test("tests that NotificationItem checks that the markAsRead property works I gu
     const markAsReadMock = jest.fn();
     const wrapper = shallow(<NotificationItem key={id} id={id} markAsRead={markAsReadMock} />);
     
-    wrapper.find('.notification-item').simulate('click');
+    wrapper.simulate('click');
     
     expect(markAsReadMock).toHaveBeenCalledWith(id);
 });

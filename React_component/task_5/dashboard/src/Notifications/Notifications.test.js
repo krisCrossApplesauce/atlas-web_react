@@ -69,3 +69,19 @@ test("tests that Notifications doesn't contain the message 'Here is the list of 
     const wrapper = shallow(<Notifications displayDrawer={true} />);
     expect(wrapper.contains(<p>Here is the list of notifications</p>)).toBe(false);
 });
+
+// not doing the tests for task 11 of React_component
+// this is the description of it anyways:
+
+// In task_5/dashboard/src/Notifications/Notifications.test.js, add two checks:
+
+// The first check should verify that when updating the props of the component with the same list, the component doesn’t rerender
+// The second check should verify that when updating the props of the component with a longer list, the component does rerender
+
+// Tips:
+// Since the NotificationItem component is a function component, you can’t directly use React.PureComponent
+// Using the React Chrome Extension to make sure the Notifications component does not rerender will not work because the extension bypass shouldComponentUpdate. Use the test to verify your code instead
+// You can use the function setProps to change the props of the component
+
+// Requirements:
+// The console in your browser should not show any error or warning

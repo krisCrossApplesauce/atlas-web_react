@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './App.css';
 import Header from '../Header/Header.js';
 import Footer from '../Footer/Footer.js';
@@ -8,7 +9,8 @@ import NotificationItemShape from '../Notifications/NotificationItemShape.js';
 import { getLatestNotification } from '../utils/utils.js';
 import CourseList from '../CourseList/CourseList.js';
 import CourseShape from '../CourseList/CourseShape.js';
-import PropTypes from 'prop-types';
+import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom.js';
+import BodySection from '../BodySection/BodySection.js';
 
 // replace this with the commented out stuff below to see if everything
 // looks alright with stuff in the notifications and course list stuff
@@ -41,7 +43,18 @@ class App extends Component {
             </div>
           </div>
           <div className="App-body">
-            {this.props.isLoggedIn === false ? (<Login />) : (<CourseList listCourses={listCourses} />)}
+            {this.props.isLoggedIn === false ? (
+              <BodySectionWithMarginBottom title="Log in to continue">
+                <Login />
+              </BodySectionWithMarginBottom>
+            ) : (
+              <BodySectionWithMarginBottom title="Courses list">
+                <CourseList listCourses={listCourses} />
+              </BodySectionWithMarginBottom>
+            )}
+            <BodySection title="News from the School">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </BodySection>
           </div>
           <Footer />
         </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './Notifications.css';
 
 // function NotificationItem(props) {
 //     return <li data-priority={props.type} dangerouslySetInnerHTML={props.html}>{props.value}</li>;

@@ -1,6 +1,5 @@
 import React from 'react';
 import CourseListRow from './CourseListRow';
-import './CourseList.css';
 import PropTypes from 'prop-types';
 import CourseShape from './CourseShape';
 import { css, StyleSheet } from 'aphrodite';
@@ -12,9 +11,10 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     color: '#eee7d5',
   },
+  colSpan2: {
+    textAlign: 'center',
+  },
 });
-// "CourseList: {"
-// ^don't get rid of this, this is to pass one of the checks in task 1 of React_inline_styling
 
 function CourseList(props) {
   return (
@@ -26,7 +26,7 @@ function CourseList(props) {
       <tbody>
         {props.listCourses.length === 0 ? (
           <tr>
-            <td colSpan="2">No course available yet</td>
+            <td colSpan="2" className={css(styles.colSpan2)}>No course available yet</td>
           </tr>
         ) : (
           props.listCourses.map((course) => (

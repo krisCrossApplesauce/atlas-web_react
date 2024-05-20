@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Login from './Login.js';
 import { StyleSheetTestUtils } from 'aphrodite';
+import '../../config/setupTests';
 
 test("tests that Login renders without crashing", () => {
     StyleSheetTestUtils.suppressStyleInjection();

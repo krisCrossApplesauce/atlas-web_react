@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './CourseList.css';
 
 function CourseListRow(props) {
+  const headerBgColor = "background-color: #deb5b545;";
   let bgColor = "background-color: #f5f5f5ab;";
   let content = (
     <>
@@ -12,7 +13,7 @@ function CourseListRow(props) {
   ); // this is what content will contain if isHeader is false, otherwise it will be changed
 
   if (props.isHeader === true) {
-    bgColor = "background-color: #deb5b545;";
+    bgColor = headerBgColor;
     content = (
       <>
         <th>{props.textFirstCell}</th>

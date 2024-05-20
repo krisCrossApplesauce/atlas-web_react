@@ -22,7 +22,7 @@ function CourseListRow(props) {
     ); // this is what content will contain if isHeader is true and textFirstCell is not null, otherwise it will be changed
 
     if (props.textSecondCell == null) {
-      content = (<> <th colSpan="2">{props.textFirstCell}</th> </>);
+      content = (<><th colSpan="2">{props.textFirstCell}</th></>);
     }
   }
 

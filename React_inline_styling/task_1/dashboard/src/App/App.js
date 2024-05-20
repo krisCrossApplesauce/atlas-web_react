@@ -23,14 +23,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderBottom: 'solid #1ed2ac',
   },
-  "body": {
+  'App-body': {
     margin: '50px',
     color: 'white',
   },
-  "footer": {
-    textAlign: 'center', // the styling for footer isn't meant to be in App
-  },
 });
+
+// ["body: {", "footer: {"]
 
 // replace this with the commented out stuff below to see if everything
 // looks alright with stuff in the notifications and course list stuff
@@ -62,7 +61,7 @@ class App extends Component {
               <Notifications listNotifications={this.props.listNotifications} />
             </div>
           </div>
-          <div className={css(styles["body"])}>
+          <div className={css(styles['App-body'])}>
             {this.props.isLoggedIn === false ? (
               <BodySectionWithMarginBottom title="Log in to continue">
                 <Login />

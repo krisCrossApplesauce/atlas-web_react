@@ -5,7 +5,7 @@ import './notLogin.css';
 import { css, StyleSheet } from 'aphrodite';
 
 const styles = StyleSheet.create({
-  inputContainer: {
+  "margin": {
     marginRight: '30px',
   },
 });
@@ -15,7 +15,7 @@ function Login() {
     <>
       <p>Login to access the full dashboard</p>
       <form>
-        <div className={css(styles.inputContainer)}>
+        <div className={css(styles["margin"])}>
           <label htmlFor="email">Email </label>
           <br />
           <input type="email" id="email" className="email"></input>

@@ -6,7 +6,7 @@ import CourseShape from './CourseShape';
 import { css, StyleSheet } from 'aphrodite';
 
 const styles = StyleSheet.create({
-  CourseList: {
+  "list": {
     width: '100%',
     outline: '1px solid #eee7d5',
     textAlign: 'left',
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 
 function CourseList(props) {
   return (
-    <table id="CourseList" className={css(styles.CourseList)}>
+    <table id="CourseList" className={css(styles["list"])}>
       <thead>
         <CourseListRow textFirstCell="Available courses" isHeader={true} />
         <CourseListRow textFirstCell="Course name" textSecondCell="Credit" isHeader={true} />

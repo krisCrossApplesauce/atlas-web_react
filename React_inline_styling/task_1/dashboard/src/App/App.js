@@ -23,9 +23,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderBottom: 'solid #1ed2ac',
   },
-  'App-body': {
+  "body": {
     margin: '50px',
     color: 'white',
+  },
+  "footer": {
+    textAlign: 'center', // the styling for footer isn't meant to be in App
   },
 });
 
@@ -52,14 +55,14 @@ class App extends Component {
   render() {
     return (
       <>
-        <div className="App" style={{fontFamily: 'sans-serif', margin: 0, padding: 0,}}>
-          <div className="header-notifications" style={{display: 'flex', justifyContent: 'space-between', borderBottom: 'solid #1ed2ac',}}>
+        <div className={css(styles.App)}>
+          <div className={css(styles['header-notifications'])}>
             <Header />
             <div className="root-notifications">
               <Notifications listNotifications={this.props.listNotifications} />
             </div>
           </div>
-          <div className="App-body" style={{margin: '50px', color: 'white',}}>
+          <div className={css(styles["body"])}>
             {this.props.isLoggedIn === false ? (
               <BodySectionWithMarginBottom title="Log in to continue">
                 <Login />

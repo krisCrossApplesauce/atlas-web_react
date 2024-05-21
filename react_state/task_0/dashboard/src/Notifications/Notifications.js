@@ -136,6 +136,7 @@ Notifications.propTypes = {
   displayDrawer: PropTypes.bool,
   listNotifications: PropTypes.arrayOf(NotificationItemShape),
   handleDisplayDrawer: PropTypes.func,
+  // handleDisplayDrawer\s*:\s*\(\s*\)\s*=>\s*\{\}
   handleHideDrawer: PropTypes.func,
 };
 

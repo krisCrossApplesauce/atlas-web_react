@@ -103,7 +103,7 @@ class Notifications extends Component {
       <>
         {this.props.displayDrawer === true ? (
           <div id="Notifications" className={css(styles.Notifications)}>
-            <button className={css(styles['notificationsButton'])} aria-label="Close" onClick={() => { this.props.handleHideDrawer(); console.log(`handleHideDrawer: ${this.props.displayDrawer}\n`); }}>x</button>
+            <button className={css(styles['notificationsButton'])} aria-label="Close" onClick={this.props.handleHideDrawer}>x</button>
             {this.props.listNotifications.length === 0 ? (
               <p>No new notification for now</p>
             ) : (
@@ -118,7 +118,7 @@ class Notifications extends Component {
             )}
           </div>
         ) : (
-          <div className={css(styles.menuItem, styles.opacityAnimation, styles.bounceAnimation)} onClick={() => { this.props.handleDisplayDrawer(); console.log(`handleDisplayDrawer: ${this.props.displayDrawer}\n`); }}>Your notifications</div>
+          <div className={css(styles.menuItem, styles.opacityAnimation, styles.bounceAnimation)} onClick={this.props.handleDisplayDrawer}>Your notifications</div>
         )}
       </>
     );
@@ -128,7 +128,7 @@ class Notifications extends Component {
 Notifications.defaultProps = {
   displayDrawer: false,
   listNotifications: [],
-  handleDisplayDrawer: () => { console.log('handleDisplayDrawer is default'); },
+  handleDisplayDrawer: () => {},
   handleHideDrawer: () => {},
 }
 
@@ -136,7 +136,6 @@ Notifications.propTypes = {
   displayDrawer: PropTypes.bool,
   listNotifications: PropTypes.arrayOf(NotificationItemShape),
   handleDisplayDrawer: PropTypes.func,
-  // handleDisplayDrawer\s*:\s*\(\s*\)\s*=>\s*\{\}
   handleHideDrawer: PropTypes.func,
 };
 

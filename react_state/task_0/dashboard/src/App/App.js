@@ -50,7 +50,6 @@ class App extends Component {
     this.state = {
       displayDrawer: false,
     };
-    // \{\s*displayDrawer\s*}\s*=\s*this\.state
   }
 
   componentDidMount() {

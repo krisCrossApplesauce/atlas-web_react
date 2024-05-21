@@ -31,18 +31,6 @@ const styles = StyleSheet.create({
 // ["body: {", "footer: {"]
 // ^don't get rid of this, this is to pass one of the checks in task 1 of React_inline_styling
 
-const listCourses = [
-  {id: 1, name: 'ES6', credit: 60},
-  {id: 2, name: 'Webpack', credit: 20},
-  {id: 3, name: 'React', credit: 40}
-];
-
-const listNotifications = [
-  {id: 1, type: "default", value: "New course available"},
-  {id: 2, type: "urgent", value: "New resume available"},
-  {id: 3, html: {__html: getLatestNotification()}, type: "urgent"}
-];
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -74,23 +62,26 @@ class App extends Component {
   }
 
   render() {
+    const { displayDrawer } = this.state;
+    const { isLoggedIn, listCourses, listNotifications } = this.props;
+
     return (
       <>
         <div className={css(styles.App)}>
           <div className={css(styles['header-notifications'])}>
             <Header />
             <div className="root-notifications">
-              <Notifications listNotifications={this.props.listNotifications} displayDrawer={this.state.displayDrawer} handleDisplayDrawer={this.handleDisplayDrawer} handleHideDrawer={this.handleHideDrawer} />
+              <Notifications listNotifications={listNotifications} displayDrawer={displayDrawer} handleDisplayDrawer={this.handleDisplayDrawer} handleHideDrawer={this.handleHideDrawer} />
             </div>
           </div>
           <div className={css(styles['App-body'])}>
-            {this.props.isLoggedIn === false ? (
+            {isLoggedIn === false ? (
               <BodySectionWithMarginBottom title="Log in to continue">
                 <Login />
               </BodySectionWithMarginBottom>
             ) : (
               <BodySectionWithMarginBottom title="Courses list">
-                <CourseList listCourses={this.props.listCourses} />
+                <CourseList listCourses={listCourses} />
               </BodySectionWithMarginBottom>
             )}
             <BodySection title="News from the School">
@@ -106,8 +97,16 @@ class App extends Component {
 
 App.defaultProps = {
   isLoggedIn: false,
-  listCourses: listCourses,
-  listNotifications: listNotifications,
+  listCourses: [
+    {id: 1, name: 'ES6', credit: 60},
+    {id: 2, name: 'Webpack', credit: 20},
+    {id: 3, name: 'React', credit: 40}
+  ],
+  listNotifications: [
+    {id: 1, type: "default", value: "New course available"},
+    {id: 2, type: "urgent", value: "New resume available"},
+    {id: 3, html: {__html: getLatestNotification()}, type: "urgent"}
+  ],
   logOut: () => {},
 }
 

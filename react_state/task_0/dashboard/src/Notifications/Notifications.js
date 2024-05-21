@@ -99,18 +99,20 @@ class Notifications extends Component {
   }
 
   render() {
+    const { displayDrawer, listNotifications, handleDisplayDrawer, handleHideDrawer } = this.props;
+
     return (
       <>
-        {this.props.displayDrawer === true ? (
+        {displayDrawer === true ? (
           <div id="Notifications" className={css(styles.Notifications)}>
-            <button className={css(styles['notificationsButton'])} aria-label="Close" onClick={this.props.handleHideDrawer}>x</button>
-            {this.props.listNotifications.length === 0 ? (
+            <button className={css(styles['notificationsButton'])} aria-label="Close" onClick={handleHideDrawer}>x</button>
+            {listNotifications.length === 0 ? (
               <p>No new notification for now</p>
             ) : (
               <>
                 <p>Here is the list of notifications</p>
                 <ul className={css(styles['ul'])}>
-                  {this.props.listNotifications.map((notification) => (
+                  {listNotifications.map((notification) => (
                     <NotificationItem key={notification.id} id={notification.id} html={notification.html} type={notification.type} value={notification.value} markAsRead={this.markAsRead} />
                   ))}
                 </ul>
@@ -118,7 +120,7 @@ class Notifications extends Component {
             )}
           </div>
         ) : (
-          <div className={css(styles.menuItem, styles.opacityAnimation, styles.bounceAnimation)} onClick={this.props.handleDisplayDrawer}>Your notifications</div>
+          <div className={css(styles.menuItem, styles.opacityAnimation, styles.bounceAnimation)} onClick={handleDisplayDrawer}>Your notifications</div>
         )}
       </>
     );

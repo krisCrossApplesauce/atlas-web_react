@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { css, StyleSheet } from 'aphrodite';
 
 const styles = StyleSheet.create({
@@ -67,7 +68,6 @@ class Login extends Component {
     super(props);
 
     this.state = {
-      isLoggedIn: false,
       email: '',
       password: '',
       enableSubmit: false,
@@ -81,7 +81,7 @@ class Login extends Component {
   handleLoginSubmit(event) {
     event.preventDefault();
     if (this.state.enableSubmit === true) {
-      this.setState({ isLoggedIn: true });
+      this.props.logIn(this.state.email, this.state.password);
     }
   }
 
@@ -125,5 +125,13 @@ class Login extends Component {
     );
   }
 }
+
+Login.defaultProps = {
+  logIn: () => { console.log("Login's logIn prop is set to its default value."); },
+};
+
+Login.propTypes = {
+  logIn: PropTypes.func,
+};
 
 export default Login;

@@ -86,6 +86,13 @@ const styles = StyleSheet.create({
 });
 
 class Notifications extends Component {
+  constructor(props) {
+    super(props);
+
+    this.shouldComponentUpdate = this.shouldComponentUpdate.bind(this);
+    this.markAsRead = this.markAsRead.bind(this);
+  }
+
   shouldComponentUpdate(newProps) {
     if (newProps.listNotifications.length > this.props.listNotifications.length || newProps.displayDrawer != this.props.displayDrawer) {
       return true;

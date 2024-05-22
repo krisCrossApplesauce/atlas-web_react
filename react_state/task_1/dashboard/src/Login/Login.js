@@ -63,23 +63,45 @@ const styles = StyleSheet.create({
 });
 
 class Login extends Component {
-  constructor() {
+  constructor(props) {
+    super(props);
+
     this.state = {
       isLoggedIn: false,
-      email: empty,
-      password: empty,
+      email: '',
+      password: '',
+      enableSubmit: false,
     };
+
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.handleChangeEmail = this.handleChangeEmail.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
   }
 
-  handleLoginSubmit() {
-    this.state.isLoggedIn = true;
+  handleLoginSubmit(event) {
+    event.preventDefault();
+    if (this.state.enableSubmit === false) {
+      console.log('Login form has been submitted.');
+    } else {
+      this.setState({ isLoggedIn: true });
+    }
   }
 
-  handleChangeEmail(value) {
-    this.state.email = value;
+  handleChangeEmail(event) {
+    this.setState({ email: event.target.value });
+    if (event.target.value != '' && this.state.password != '') {
+      this.setState({ enableSubmit: true });
+    } else {
+      this.setState({ enableSubmit: false });
+    }
   }
-  handleChangePassword(value) {
-    this.state.password = value;
+  handleChangePassword(event) {
+    this.setState({password: event.target.value});
+    if (event.target.value != '' && this.state.email != '') {
+      this.setState({ enableSubmit: true });
+    } else {
+      this.setState({ enableSubmit: false });
+    }
   }
 
   render() {
@@ -90,16 +112,16 @@ class Login extends Component {
         <p>Login to access the full dashboard</p>
         <form className={css(styles.form)} onSubmit={this.handleLoginSubmit}>
           <div className={css(styles.inputContainer)}>
-            <label htmlFor="email" className={css(styles.label)} value={email}>Email </label>
+            <label htmlFor="email" className={css(styles.label)}>Email </label>
             <br />
-            <input type="email" id="email" className={css(styles.email)}></input>
+            <input type="email" id="email" className={css(styles.email)} value={email} onChange={this.handleChangeEmail}></input>
           </div>
           <div className={css(styles.inputContainer)}>
-            <label htmlFor="password" className={css(styles.label)} value={password}>Password </label>
+            <label htmlFor="password" className={css(styles.label)}>Password </label>
             <br />
-            <input type="password" id="password" className={css(styles.password)}></input>
+            <input type="password" id="password" className={css(styles.password)} value={password} onChange={this.handleChangePassword}></input>
           </div>
-          <input type="submit" className={css(styles['formButton'])}>OK</input>
+          <input type="submit" className={css(styles['formButton'])} value="OK"></input>
         </form>
       </>
     );

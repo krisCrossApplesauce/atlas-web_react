@@ -23,3 +23,5 @@ test("tests that Header contains h1 tag", () => {
     expect(wrapper.find('h1').exists()).toBe(true);
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });
+
+test("", () => {});

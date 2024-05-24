@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 function CourseListRow(props) {
   const [isChecked, setIsChecked] = useState(false);
 
-  const handleChecked = () => { setIsChecked(!isChecked); }
+  const handleChecked = () => { setIsChecked(!isChecked); };
 
   const rowChecked = {backgroundColor: '#eee7d5', color: '#00003c'};
   const headerBgColor = {backgroundColor: '#eee7d545'};

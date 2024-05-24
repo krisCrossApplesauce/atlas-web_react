@@ -21,6 +21,7 @@ test("tests that shallowing BodySectionWithMarginBottom should correctly render 
             <p>test children node</p>
         </BodySectionWithMarginBottom>
     );
-    expect(wrapper.find('BodySection').props).toBe({ title: "test title", children: (<p>test children node</p>) });
+    expect(wrapper.find('BodySection').prop('title')).toEqual("test title");
+    expect(wrapper.find('BodySection').prop('children')).toEqual(<p>test children node</p>);
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });

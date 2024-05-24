@@ -62,6 +62,19 @@ test("tests that Header contains logoutSection when the context's user has non-e
 
 test("tests that Header's logout link works", () => {
     StyleSheetTestUtils.suppressStyleInjection();
+
+    const CONSOLE_FAIL_TYPES = ['error', 'warn'];
+    const stupidWarningImGonnaOverride = "Warning: findDOMNode is deprecated and will be removed in the next major release. Instead, add a ref directly to the element you want to reference. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-find-node";
+    CONSOLE_FAIL_TYPES.forEach((type) => {
+        console[type] = (message) => {
+            if (message != stupidWarningImGonnaOverride) {
+                throw new Error(message);
+            } else {
+                console.log("There's a warning, but it's really annoying so I've replaced it with this");
+            }
+        }
+    });
+
     const logOutTest = jest.fn();
     const wrapper = mount(
         <AppContext.Provider value={{ user: user2, logOut: logOutTest }}>

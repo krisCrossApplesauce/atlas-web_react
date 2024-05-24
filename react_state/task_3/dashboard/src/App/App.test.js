@@ -83,21 +83,21 @@ test("tests that App contains Footer", () => {
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });
 
-// I cannot get the following test to work for the life of me
-// test("tests that App calls the logOut function (which is passed as a prop) and the alert function is called with the correct string when the keys control and h are pressed", () => {
-//     const logOutMock = jest.fn(console.log("logOut function called! :D"));
-//     console.log("if console.log message is printed before this, console.log happens when const logOutMock is set");
-//     const alertMock = jest.spyOn(global.window, 'alert').mockImplementation(() => {});
+// I cannot get the alertMock part of following test to work for the life of me
+test("tests that App calls the logOut function (which is passed as a prop) and the alert function is called with the correct string when the keys control and h are pressed", () => {
+    StyleSheetTestUtils.suppressStyleInjection();
+    // const alertMock = jest.spyOn(global.window, 'alert').mockImplementation(() => {});
+    const wrapper = shallow(<App />).simulate('keydown', {key: 'h', ctrlKey: true});
+    expect(wrapper.state().user).toEqual({
+        email: '',
+        password: '',
+        isLoggedIn: false,
+    });
+    // expect(alertMock).toHaveBeenCalledWith('Logging you out');
 
-//     const wrapper = shallow(<App logOut={logOutMock} />).simulate('keydown', {key: 'h', ctrlKey: true});
-//     console.log("if console.log message is printed only before this, logOutMock is run when wrapper is created, as it should");
-
-//     expect(wrapper.exists()).toBe(true);
-//     expect(wrapper.prop("logOut")).toHaveBeenCalled();
-//     expect(alertMock).toHaveBeenCalledWith('Logging you out');
-
-//     alertMock.mockRestore();
-// });
+    // alertMock.mockRestore();
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
 
 test("tests that App's default state for displayDrawer is false and that it's true after calling handleDisplayDrawer", () => {
     StyleSheetTestUtils.suppressStyleInjection();
@@ -118,4 +118,26 @@ test("tests that App's state for displayDrawer is false after calling handleHide
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });
 
-// didn't include the tests for task 2 of react_state
+test("tests that App's logIn function updates the state correctly", () => {
+    StyleSheetTestUtils.suppressStyleInjection();
+    const wrapper = shallow(<App />);
+    wrapper.instance().logIn('test@test.com', 'test');
+    expect(wrapper.state().user).toEqual({
+        email: 'test@test.com',
+        password: 'test',
+        isLoggedIn: true,
+    });
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
+
+test("tests that App's logOut function updates the state correctly", () => {
+    StyleSheetTestUtils.suppressStyleInjection();
+    const wrapper = shallow(<App />);
+    wrapper.instance().logOut();
+    expect(wrapper.state().user).toEqual({
+        email: '',
+        password: '',
+        isLoggedIn: false,
+    });
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});

@@ -1,6 +1,7 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Footer from './Footer.js';
+import AppContext from '../App/AppContext.js';
 
 test("tests that Footer renders without crashing", () => {
     const wrapper = shallow(<Footer />);
@@ -18,7 +19,12 @@ test("tests that the link is not displayed when the user is logged out within th
 });
 
 test("tests that the link is displayed when the user is logged in within the context", () => {
-    const wrapper = shallow(<Footer />);
+    const wrapper = mount(
+        <AppContext.Provider value={{ user: { isLoggedIn: true } }}>
+            <Footer />
+        </AppContext.Provider>
+    );
     // something here that makes the context user logged in
     expect(wrapper.find('a')).toHaveLength(1);
+    wrapper.unmount();
 });

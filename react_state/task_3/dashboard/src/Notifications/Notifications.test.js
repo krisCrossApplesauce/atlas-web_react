@@ -5,9 +5,14 @@ import NotificationItem from './NotificationItem';
 import NotificationItemShape from './NotificationItemShape';
 import { getLatestNotification } from '../utils/utils';
 import { StyleSheetTestUtils, css, StyleSheet } from 'aphrodite';
+import util from 'util';
 import Adapter from '@cfaester/enzyme-adapter-react-18';
 
 enzyme.configure({ adapter: new Adapter() });
+
+Object.defineProperty(global, 'TextEncoder', {
+    value: util.TextEncoder,
+});
 
 const styles = StyleSheet.create({
     Notifications: {

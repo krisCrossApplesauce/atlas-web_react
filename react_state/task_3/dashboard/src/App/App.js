@@ -44,6 +44,11 @@ class App extends Component {
         isLoggedIn: false,
       },
       logOut: this.logOut,
+      listNotifications: [
+        {id: 1, type: "default", value: "New course available"},
+        {id: 2, type: "urgent", value: "New resume available"},
+        {id: 3, html: {__html: getLatestNotification()}, type: "urgent"}
+      ],
     };
 
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -83,7 +88,6 @@ class App extends Component {
       isLoggedIn: true,
     }});
   }
-
   logOut() {
     this.setState({user: {
       email: '',
@@ -92,9 +96,15 @@ class App extends Component {
     }});
   }
 
+  markNotificationAsRead(id) {
+    const newListNotifications = this.state.listNotifications.filter((notifObj) => { notifObj.id != id });
+    console.log(`listNotifications w/o notification of id = ${id}:  ${newListNotifications}`);
+    this.setState({listNotifications: newListNotifications});
+  }
+
   render() {
-    const { displayDrawer, user } = this.state;
-    const { listCourses, listNotifications } = this.props;
+    const { displayDrawer, user, listNotifications } = this.state;
+    const { listCourses } = this.props;
 
     return (
       <AppContext.Provider value={{ user, logOut: this.logOut }}>
@@ -132,16 +142,10 @@ App.defaultProps = {
     {id: 2, name: 'Webpack', credit: 20},
     {id: 3, name: 'React', credit: 40}
   ],
-  listNotifications: [
-    {id: 1, type: "default", value: "New course available"},
-    {id: 2, type: "urgent", value: "New resume available"},
-    {id: 3, html: {__html: getLatestNotification()}, type: "urgent"}
-  ],
 }
 
 App.propTypes = {
   listCourses: PropTypes.arrayOf(CourseShape),
-  listNotifications: PropTypes.arrayOf(NotificationItemShape),
 };
 
 export default App;

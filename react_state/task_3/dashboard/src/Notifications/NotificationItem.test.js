@@ -2,9 +2,14 @@ import React from 'react';
 import enzyme, { shallow } from 'enzyme';
 import NotificationItem from './NotificationItem';
 import { StyleSheetTestUtils, css, StyleSheet } from 'aphrodite';
+import util from 'util';
 import Adapter from '@cfaester/enzyme-adapter-react-18';
 
 enzyme.configure({ adapter: new Adapter() });
+
+Object.defineProperty(global, 'TextEncoder', {
+    value: util.TextEncoder,
+});
 
 const styles = StyleSheet.create({
     default: {

@@ -46,7 +46,7 @@ class Header extends Component {
         <img src={logo} className={css(styles['App-logo'])} alt="atlas logo" />
         <h1 className={css(styles['App-header-h1'])}>School dashboard</h1>
         </header>
-        {c.user.isLoggedIn === true && (
+        {c.user && c.user.isLoggedIn === true && (
           <section id="logoutSection" className={css(styles.logoutSection)}>Welcome <b>{c.user.email}</b> <a className={css(styles.link)} onClick={c.logOut}>(logout)</a></section>
         )}
       </div>

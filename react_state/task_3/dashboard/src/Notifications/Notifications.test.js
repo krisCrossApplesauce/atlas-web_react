@@ -106,20 +106,20 @@ test("tests that Notifications correctly renders the right html for the first No
 test("tests that Notifications displays menuItem div when displayDrawer is false", () => {
     StyleSheetTestUtils.suppressStyleInjection();
     const wrapper = shallow(<Notifications />);
-    expect(wrapper.contains(<div className={css(styles.menuItem, styles.opacityAnimation, styles.bounceAnimation)} onClick={() => {}}>Your notifications</div>)).toBe(true);
+    expect(wrapper.find('div#menuItem')).toHaveLength(1);
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });
 test("tests that Notifications does not display Notifications div when displayDrawer is false", () => {
     StyleSheetTestUtils.suppressStyleInjection();
     const wrapper = shallow(<Notifications />);
-    expect(wrapper.find('div.Notifications')).toHaveLength(0);
+    expect(wrapper.find('div#Notifications')).toHaveLength(0);
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });
 
-test("tests that Notifications displays menuItem div when displayDrawer is true", () => {
+test("tests that Notifications does not display menuItem div when displayDrawer is true", () => {
     StyleSheetTestUtils.suppressStyleInjection();
     const wrapper = shallow(<Notifications displayDrawer={true} />);
-    expect(wrapper.contains(<div className={css(styles.menuItem, styles.opacityAnimation, styles.bounceAnimation)} onClick={() => {}}>Your notifications</div>)).toBe(true);
+    expect(wrapper.find('div#menuItem')).toHaveLength(0);
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });
 test("tests that Notifications displays Notifications div when displayDrawer is true", () => {

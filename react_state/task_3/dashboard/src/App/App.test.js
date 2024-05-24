@@ -18,16 +18,16 @@ global.window = {
     alert: jest.fn(),
 };
 
-const testListNotifications = [
-    {id: 1, type: "default", value: "New course available"},
-    {id: 2, type: "urgent", value: "New resume available"},
-    {id: 3, html: {__html: getLatestNotification()}, type: "urgent"}
-];
-const testListCourses = [
-    {id: 1, name: 'ES6', credit: 60},
-    {id: 2, name: 'Webpack', credit: 20},
-    {id: 3, name: 'React', credit: 40}
-];
+// const testListNotifications = [
+//     {id: 1, type: "default", value: "New course available"},
+//     {id: 2, type: "urgent", value: "New resume available"},
+//     {id: 3, html: {__html: getLatestNotification()}, type: "urgent"}
+// ];
+// const testListCourses = [
+//     {id: 1, name: 'ES6', credit: 60},
+//     {id: 2, name: 'Webpack', credit: 20},
+//     {id: 3, name: 'React', credit: 40}
+// ];
 
 test("tests that App renders without crashing", () => {
     StyleSheetTestUtils.suppressStyleInjection();
@@ -39,7 +39,7 @@ test("tests that App renders without crashing", () => {
 test("tests that App contains Notifications", () => {
     StyleSheetTestUtils.suppressStyleInjection();
     const wrapper = shallow(<App />);
-    expect(wrapper.contains(<Notifications listNotifications={testListNotifications} displayDrawer={false} handleDisplayDrawer={() => { this.setState({displayDrawer: true}); }} handleHideDrawer={() => { this.setState({displayDrawer: false}); }} />)).toBe(true);
+    expect(wrapper.find(Notifications)).toHaveLength(1);
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });
 
@@ -53,26 +53,28 @@ test("tests that App contains Header", () => {
 test("tests that App contains Login by default (isLoggedIn = false)", () => {
     StyleSheetTestUtils.suppressStyleInjection();
     const wrapper = shallow(<App />);
-    expect(wrapper.contains(<Login />)).toBe(true);
+    expect(wrapper.find(Login)).toHaveLength(1);
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });
 test("tests that App does not contain CourseList by default (isLoggedIn = false)", () => {
     StyleSheetTestUtils.suppressStyleInjection();
     const wrapper = shallow(<App />);
-    expect(wrapper.contains(<CourseList />)).toBe(false);
+    expect(wrapper.find(CourseList)).toHaveLength(0);
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });
 
 test("tests that App contains CourseList when isLoggedIn is true", () => {
     StyleSheetTestUtils.suppressStyleInjection();
-    const wrapper = shallow(<App isLoggedIn={true} />);
-    expect(wrapper.contains(<CourseList listCourses={testListCourses} />)).toBe(true);
+    const wrapper = shallow(<App />);
+    wrapper.setState({ user: { isLoggedIn: true } });
+    expect(wrapper.find(CourseList)).toHaveLength(1);
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });
 test("tests that App does not contain Login when isLoggedIn is true", () => {
     StyleSheetTestUtils.suppressStyleInjection();
-    const wrapper = shallow(<App isLoggedIn={true} />);
-    expect(wrapper.contains(<Login />)).toBe(false);
+    const wrapper = shallow(<App />);
+    wrapper.setState({ user: { isLoggedIn: true } });
+    expect(wrapper.find(Login)).toHaveLength(0);
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });
 
@@ -84,7 +86,7 @@ test("tests that App contains Footer", () => {
 });
 
 // I cannot get the alertMock part of following test to work for the life of me
-test("tests that App calls the logOut function (which is passed as a prop) and the alert function is called with the correct string when the keys control and h are pressed", () => {
+test("tests that App calls the logOut function and the alert function is called with the correct string when the keys control and h are pressed", () => {
     StyleSheetTestUtils.suppressStyleInjection();
     // const alertMock = jest.spyOn(global.window, 'alert').mockImplementation(() => {});
     const wrapper = shallow(<App />).simulate('keydown', {key: 'h', ctrlKey: true});
@@ -141,3 +143,15 @@ test("tests that App's logOut function updates the state correctly", () => {
     });
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });
+
+test("tests that App's logOut function updates the state correctly", () => {
+    StyleSheetTestUtils.suppressStyleInjection();
+    const wrapper = shallow(<App />);
+    wrapper.instance().markNotificationAsRead(2);
+    expect(wrapper.state().listNotifications).toEqual([
+        {id: 1, type: "default", value: "New course available"},
+        {id: 3, html: {__html: getLatestNotification()}, type: "urgent"}
+    ]);
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
+

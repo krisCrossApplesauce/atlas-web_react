@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import NotificationItem from './NotificationItem.js';
 import NotificationItemShape from './NotificationItemShape.js';
 // import { getLatestNotification } from '../utils/utils.js';
@@ -85,28 +85,13 @@ const styles = StyleSheet.create({
   },
 });
 
-class Notifications extends Component {
+class Notifications extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.shouldComponentUpdate = this.shouldComponentUpdate.bind(this);
-    this.markAsRead = this.markAsRead.bind(this);
-  }
-
-  shouldComponentUpdate(newProps) {
-    if (newProps.listNotifications.length > this.props.listNotifications.length || newProps.displayDrawer != this.props.displayDrawer) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  markAsRead(id) {
-    console.log(`Notification ${id} has been marked as read`);
   }
 
   render() {
-    const { displayDrawer, listNotifications, handleDisplayDrawer, handleHideDrawer } = this.props;
+    const { displayDrawer, listNotifications, handleDisplayDrawer, handleHideDrawer, markNotificationAsRead } = this.props;
 
     return (
       <>
@@ -120,14 +105,14 @@ class Notifications extends Component {
                 <p>Here is the list of notifications</p>
                 <ul className={css(styles['ul'])}>
                   {listNotifications.map((notification) => (
-                    <NotificationItem key={notification.id} id={notification.id} html={notification.html} type={notification.type} value={notification.value} markAsRead={this.markAsRead} />
+                    <NotificationItem key={notification.id} id={notification.id} html={notification.html} type={notification.type} value={notification.value} markAsRead={markNotificationAsRead} />
                   ))}
                 </ul>
               </>
             )}
           </div>
         ) : (
-          <div className={css(styles.menuItem, styles.opacityAnimation, styles.bounceAnimation)} onClick={handleDisplayDrawer}>Your notifications</div>
+          <div id="menuItem" className={css(styles.menuItem, styles.opacityAnimation, styles.bounceAnimation)} onClick={handleDisplayDrawer}>Your notifications</div>
         )}
       </>
     );
@@ -139,6 +124,7 @@ Notifications.defaultProps = {
   listNotifications: [],
   handleDisplayDrawer: () => {},
   handleHideDrawer: () => {},
+  markNotificationAsRead: (id) => { console.log(`Notification ${id} has been marked as read`) },
 }
 
 Notifications.propTypes = {
@@ -146,6 +132,7 @@ Notifications.propTypes = {
   listNotifications: PropTypes.arrayOf(NotificationItemShape),
   handleDisplayDrawer: PropTypes.func,
   handleHideDrawer: PropTypes.func,
+  markNotificationAsRead: PropTypes.func,
 };
 
 export default Notifications;

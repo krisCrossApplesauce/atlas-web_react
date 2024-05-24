@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { css, StyleSheet } from 'aphrodite';
 
@@ -29,26 +29,19 @@ const styles = StyleSheet.create({
 //     return <li data-priority={props.type} dangerouslySetInnerHTML={props.html}>{props.value}</li>;
 // }
 
-class NotificationItem extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.value !== this.props.value || nextState.value !== this.state.value) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
+class NotificationItem extends PureComponent {
   constructor(props) {
     super(props);
-    this.markAsRead = this.props.markAsRead.bind(this);
   }
 
   render() {
+    const { id, html, type, value, markAsRead } = this.props;
+
     let styleType = styles.default;
-    if (this.props.type === "urgent") {
+    if (type === "urgent") {
       styleType = styles.urgent;
     }
-    return <li className={css(styleType)} onClick={() => this.markAsRead(this.props.id)} data-notification-type={this.props.type} dangerouslySetInnerHTML={this.props.html}>{this.props.value}</li>;
+    return <li className={css(styleType)} onClick={() => markAsRead(id)} data-notification-type={type} dangerouslySetInnerHTML={html}>{value}</li>;
   }
 }
 

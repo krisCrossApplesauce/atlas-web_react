@@ -58,6 +58,7 @@ class App extends Component {
     this.handleHideDrawer = this.handleHideDrawer.bind(this);
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
+    this.markNotificationAsRead = this.markNotificationAsRead.bind(this);
   }
 
   componentDidMount() {
@@ -97,8 +98,7 @@ class App extends Component {
   }
 
   markNotificationAsRead(id) {
-    const newListNotifications = this.state.listNotifications.filter((notifObj) => { notifObj.id != id });
-    console.log(`listNotifications w/o notification of id = ${id}:  ${newListNotifications}`);
+    const newListNotifications = this.state.listNotifications.filter(notifObj => notifObj.id != id );
     this.setState({listNotifications: newListNotifications});
   }
 
@@ -112,7 +112,7 @@ class App extends Component {
           <div className={css(styles['header-notifications'])}>
             <Header />
             <div className="root-notifications">
-              <Notifications listNotifications={listNotifications} displayDrawer={displayDrawer} handleDisplayDrawer={this.handleDisplayDrawer} handleHideDrawer={this.handleHideDrawer} />
+              <Notifications listNotifications={listNotifications} displayDrawer={displayDrawer} handleDisplayDrawer={this.handleDisplayDrawer} handleHideDrawer={this.handleHideDrawer} markNotificationAsRead={this.markNotificationAsRead} />
             </div>
           </div>
           <div className={css(styles['App-body'])}>

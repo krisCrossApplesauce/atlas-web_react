@@ -27,7 +27,7 @@ module.exports = {
                 use: ['file-loader', 'image-webpack-loader'],
             },
             {
-                test: /\.(js|jsx)$/,
+                test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader",
@@ -35,15 +35,6 @@ module.exports = {
                         presets: ['@babel/preset-env', '@babel/preset-react'],
                     },
                 },
-            },
-            {
-                test: /\.json$/,
-                type: 'javascript/auto',
-                use: [
-                    {
-                        loader: 'json-loader'
-                    },
-                ],
             },
         ],
     },

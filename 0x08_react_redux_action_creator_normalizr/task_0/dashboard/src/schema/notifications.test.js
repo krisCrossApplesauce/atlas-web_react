@@ -3,7 +3,7 @@ import getAllNotificationsByUser from './notifications';
 
 describe("tests for getAllNotificationsByUser", () => {
 	it("", () => {
-		const userNotifs = getAllNotificationsByUser('5debd764a7c57c7839d722e9');
+		const userNotifs = getAllNotificationsByUser("5debd764a7c57c7839d722e9");
 		expect(userNotifs).toEqual([
 			{
 				guid: "2d8e40be-1c78-4de0-afc9-fcc147afd4d2",

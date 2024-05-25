@@ -1,14 +1,9 @@
 import * as notificationData from '../../notifications.json';
 
 function getAllNotificationsByUser(userId) {
-    let userNotifications = [];
-    for (let contextObj in notificationData) {
-        if (contextObj.id === userId) {
-            userNotifications.append(contextObj);
-        }
-    }
-
-    return userNotifications;
+    return notificationData.default
+        .filter(obj => obj.author.id === userId)
+        .map(obj => obj.context);
 }
 
 export default getAllNotificationsByUser;

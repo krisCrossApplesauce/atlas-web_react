@@ -12,14 +12,14 @@ This project walks through the basics of setting up and using Webpack. It covers
 * usage?
 
 ## Directories
-#### task_0
+### task_0
 * manual basic setup
-#### task_1
+### task_1
 * setup using Webpack
-#### task_2
+### task_2
 * builds on the code from task_1
 * adds CSS
-#### task_3
+### task_3
 * builds on the code from task_2
 * development server
 * reorganized code into modules

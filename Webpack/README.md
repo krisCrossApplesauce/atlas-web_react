@@ -11,7 +11,8 @@ This project walks through the basics of setting up and using Webpack. It covers
 * learning objective from the project description
 * usage?
 
-## Directories
+## Tasks
+A description of the contents of each directory.
 ### task_0
 * manual basic setup
 ### task_1

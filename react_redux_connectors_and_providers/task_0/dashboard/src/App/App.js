@@ -12,7 +12,7 @@ import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBot
 import BodySection from '../BodySection/BodySection.js';
 import { css, StyleSheet } from 'aphrodite';
 import AppContext from './AppContext.js';
-import uiReducer from '../reducers/uiReducer.js';
+// import uiReducer from '../reducers/uiReducer.js';
 import { connect } from 'react-redux';
 
 const styles = StyleSheet.create({
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-  uiReducer();
+  return { isLoggedIn: state.isLoggedIn };
 }
 
 class App extends Component {
@@ -152,4 +152,4 @@ App.propTypes = {
   listCourses: PropTypes.arrayOf(CourseShape),
 };
 
-export default App;
+export default connect(mapStateToProps)(App);

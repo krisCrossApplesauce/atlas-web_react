@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function mapStateToProps(state) {
+export function mapStateToProps(state) {
   return { isLoggedIn: state.isLoggedIn };
 }
 

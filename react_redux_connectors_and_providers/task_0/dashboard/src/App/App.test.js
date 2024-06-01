@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from './App';
+import App, { mapStateToProps } from './App';
 import Notifications from '../Notifications/Notifications';
 import { getLatestNotification } from '../utils/utils.js';
 import Header from '../Header/Header';
@@ -8,6 +8,12 @@ import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
 import CourseList from '../CourseList/CourseList';
 import { StyleSheetTestUtils } from 'aphrodite';
+import { fromJS } from 'immutable';
+import { createStore } from 'redux';
+import uiReducer from '../reducers/uiReducer.js';
+import { Provider } from'react-redux';
+
+const store = createStore(uiReducer);
 
 global.document = {
     addEventListener: jest.fn(),
@@ -155,3 +161,9 @@ test("tests that App's logOut function updates the state correctly", () => {
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });
 
+test("tests that mapStateToProps", () => {
+    StyleSheetTestUtils.suppressStyleInjection();
+    let state = { isLoggedIn: true };
+    expect(mapStateToProps(state)).toEqual({ isLoggedIn: true });
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});

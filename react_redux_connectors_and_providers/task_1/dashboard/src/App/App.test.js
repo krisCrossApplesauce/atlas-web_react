@@ -24,12 +24,16 @@ global.window = {
     alert: jest.fn(),
 };
 
-// test("tests that App renders without crashing", () => {
-//     StyleSheetTestUtils.suppressStyleInjection();
-//     const wrapper = shallow(<App />);
-//     expect(wrapper.exists()).toBe(true);
-//     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
-// });
+test("tests that App renders without crashing", () => {
+    StyleSheetTestUtils.suppressStyleInjection();
+    const wrapper = shallow(
+        <Provider store={store}>
+            <App />
+        </Provider>
+    );
+    expect(wrapper.exists()).toBe(true);
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
 
 // test("tests that App contains Notifications", () => {
 //     StyleSheetTestUtils.suppressStyleInjection();
@@ -152,7 +156,7 @@ global.window = {
 
 test("tests that mapStateToProps", () => {
     StyleSheetTestUtils.suppressStyleInjection();
-    let state = fromJS({ isUserLoggedIn: true });
-    expect(mapStateToProps(state)).toEqual({ isLoggedIn: true });
+    let state = fromJS({ isUserLoggedIn: true, isNotificationDrawerVisible: true });
+    expect(mapStateToProps(state)).toEqual({ isLoggedIn: true, displayDrawer: true });
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });

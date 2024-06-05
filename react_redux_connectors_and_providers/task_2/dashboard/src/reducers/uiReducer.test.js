@@ -1,6 +1,6 @@
 import uiReducer from "./uiReducer";
 import { selectCourse } from "../actions/courseActionCreators";
-import { displayNotificationDrawer } from "../actions/uiActionCreators";
+import { displayNotificationDrawer, login } from "../actions/uiActionCreators";
 
 describe("tests uiReducer", () => {
   it("tests that uiReducer returns the initial state when no action is passed", () => {
@@ -9,7 +9,11 @@ describe("tests uiReducer", () => {
     expect(state).toEqual({
       isNotificationDrawerVisible: false,
       isUserLoggedIn: false,
-      user: {},
+      user: {
+        email: "",
+        password: "",
+        isLoggedIn: false,
+      },
     });
   });
 
@@ -19,7 +23,11 @@ describe("tests uiReducer", () => {
     expect(state).toEqual({
       isNotificationDrawerVisible: false,
       isUserLoggedIn: false,
-      user: {},
+      user: {
+        email: "",
+        password: "",
+        isLoggedIn: false,
+      },
     });
   });
 
@@ -29,7 +37,24 @@ describe("tests uiReducer", () => {
     expect(state).toEqual({
       isNotificationDrawerVisible: true,
       isUserLoggedIn: false,
-      user: {},
+      user: {
+        email: "",
+        password: "",
+        isLoggedIn: false,
+      },
+    });
+  });
+
+  it("tests that uiReducer returns the correct state when an action with type: LOGIN is passed", () => {
+    const stateMap = uiReducer(undefined, login("test@email.com", "password"));
+    const state = stateMap.toJS();
+    expect(state).toEqual({
+      isNotificationDrawerVisible: false,
+      isUserLoggedIn: false,
+      user: {
+        email: "test@email.com",
+        password: "password",
+      },
     });
   });
 });

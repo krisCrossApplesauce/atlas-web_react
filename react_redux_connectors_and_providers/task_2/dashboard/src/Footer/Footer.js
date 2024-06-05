@@ -11,15 +11,13 @@ function mapStateToProps(state) {
   };
 }
 
-class Footer extends Component {
+export class Footer extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
     const { user } = this.props;
-    console.log(`Footer user:`);
-    console.log(user);
 
     return (
       <footer className="App-footer">

@@ -47,7 +47,7 @@ const mapDispatchToProps = {
   login: loginRequest,
 };
 
-class App extends Component {
+export class App extends Component {
   constructor(props) {
     super(props);
 
@@ -131,6 +131,9 @@ class App extends Component {
 App.defaultProps = {
   isLoggedIn: false,
   displayDrawer: false,
+  handleDisplayDrawer: () => {},
+  handleHideDrawer: () => {},
+  login: () => {},
   logout: () => {},
 }
 

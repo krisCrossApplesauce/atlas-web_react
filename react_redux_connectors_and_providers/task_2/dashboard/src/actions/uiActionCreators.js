@@ -47,8 +47,6 @@ export function loginRequest(email, password) {
       .then((response) => { return response.json(); })
       .then(() => { return dispatch(loginSuccess()); })
       .catch(() => { return dispatch(loginFailure()); });
-    console.log('response');
-    console.log(response);
     return response;
   };
 }

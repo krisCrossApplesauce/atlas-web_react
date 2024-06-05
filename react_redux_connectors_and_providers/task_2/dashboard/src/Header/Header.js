@@ -46,16 +46,13 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-class Header extends Component {
+export class Header extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
     const { user, logout } = this.props;
-
-    console.log(`Header user:`);
-    console.log(user);
 
     return (
       <div>
@@ -77,6 +74,7 @@ Header.defaultProps = {
     password: '',
     isLoggedIn: false,
   },
+  logout: () => {},
 }
 
 Header.propTypes = {

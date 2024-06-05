@@ -99,7 +99,7 @@ class App extends Component {
     const { isLoggedIn, displayDrawer, handleDisplayDrawer, handleHideDrawer, login, logout } = this.props;
 
     return (
-      <AppContext.Provider value={{ user: user, logOut: logout }}>
+      <AppContext.Provider value={{ /* user: user, */ logOut: logout }}>
         <div className={css(styles.App)}>
           <div className={css(styles['header-notifications'])}>
             <Header />

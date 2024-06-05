@@ -5,6 +5,7 @@ import { css, StyleSheet } from 'aphrodite';
 import { connect } from 'react-redux';
 import { logout } from '../actions/uiActionCreators.js';
 import PropTypes from 'prop-types';
+import { Map } from 'immutable';
 
 const styles = StyleSheet.create({
   'App-header': {
@@ -53,6 +54,9 @@ class Header extends Component {
   render() {
     const { user, logout } = this.props;
 
+    console.log(`Header user:`);
+    console.log(user);
+
     return (
       <div>
         <header className={css(styles['App-header'])}>
@@ -60,7 +64,7 @@ class Header extends Component {
         <h1 className={css(styles['App-header-h1'])}>School dashboard</h1>
         </header>
         {user && user.isLoggedIn === true && (
-          <section id="logoutSection" className={css(styles.logoutSection)}>Welcome <b>{user.email}</b> <a className={css(styles.link)} onClick={logout}>(logout)</a></section>
+          <section id="logoutSection" className={css(styles.logoutSection)}>Welcome <b>{user.email /* || user._root.entries[2][1].email */ || 'error'}</b> <a className={css(styles.link)} onClick={logout}>(logout)</a></section>
         )}
       </div>
     );
@@ -77,9 +81,9 @@ Header.defaultProps = {
 
 Header.propTypes = {
   user: PropTypes.shape({
-    email: PropTypes.string.isRequired,
-    password:  PropTypes.string.isRequired,
-    isLoggedIn: PropTypes.bool.isRequired,
+    email: PropTypes.string,
+    password:  PropTypes.string,
+    isLoggedIn: PropTypes.bool,
   }).isRequired,
   logout: PropTypes.func.isRequired,
 };

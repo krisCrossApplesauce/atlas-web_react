@@ -18,6 +18,8 @@ class Footer extends Component {
 
   render() {
     const { user } = this.props;
+    console.log(`Footer user:`);
+    console.log(user);
 
     return (
       <footer className="App-footer">
@@ -40,9 +42,9 @@ Footer.defaultProps = {
 
 Footer.propTypes = {
   user: PropTypes.shape({
-    email: PropTypes.string.isRequired,
-    password:  PropTypes.string.isRequired,
-    isLoggedIn: PropTypes.bool.isRequired,
+    email: PropTypes.string,
+    password:  PropTypes.string,
+    isLoggedIn: PropTypes.bool,
   }).isRequired,
 };
 

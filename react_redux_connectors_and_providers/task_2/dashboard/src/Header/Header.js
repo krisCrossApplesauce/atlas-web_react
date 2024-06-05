@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import logo from '../assets/atlas-logo.jpg';
 import { css, StyleSheet } from 'aphrodite';
-import AppContext from '../App/AppContext';
+// import AppContext from '../App/AppContext';
+import { connect } from 'react-redux';
+import { logout } from '../actions/uiActionCreators.js';
+import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   'App-header': {
@@ -30,15 +33,25 @@ const styles = StyleSheet.create({
   },
 });
 
-class Header extends Component {
-  static contextType = AppContext;
+function mapStateToProps(state) {
+  return {
+    user: state.get('user'),
+  };
+}
 
+function mapDispatchToProps(dispatch) {
+  return {
+    logout: () => dispatch(logout()),
+  };
+}
+
+class Header extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const c = this.context;
+    const { user, logout } = this.props;
 
     return (
       <div>
@@ -46,12 +59,29 @@ class Header extends Component {
         <img src={logo} className={css(styles['App-logo'])} alt="atlas logo" />
         <h1 className={css(styles['App-header-h1'])}>School dashboard</h1>
         </header>
-        {c.user && c.user.isLoggedIn === true && (
-          <section id="logoutSection" className={css(styles.logoutSection)}>Welcome <b>{c.user.email}</b> <a className={css(styles.link)} onClick={c.logOut}>(logout)</a></section>
+        {user && user.isLoggedIn === true && (
+          <section id="logoutSection" className={css(styles.logoutSection)}>Welcome <b>{user.email}</b> <a className={css(styles.link)} onClick={logout}>(logout)</a></section>
         )}
       </div>
     );
   };
 };
 
-export default Header;
+Header.defaultProps = {
+  user: {
+    email: '',
+    password: '',
+    isLoggedIn: false,
+  },
+}
+
+Header.propTypes = {
+  user: PropTypes.shape({
+    email: PropTypes.string.isRequired,
+    password:  PropTypes.string.isRequired,
+    isLoggedIn: PropTypes.bool.isRequired,
+  }).isRequired,
+  logout: PropTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

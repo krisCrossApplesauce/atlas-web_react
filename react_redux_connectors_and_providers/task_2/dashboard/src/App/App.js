@@ -15,7 +15,7 @@ import AppContext from './AppContext.js';
 // import uiReducer from '../reducers/uiReducer.js';
 import { displayNotificationDrawer, hideNotificationDrawer } from '../actions/uiActionCreators.js';
 import { connect } from 'react-redux';
-import { loginRequest, logout } from '../actions/uiActionCreators.js';
+import { loginRequest } from '../actions/uiActionCreators.js';
 
 const styles = StyleSheet.create({
   App: {
@@ -45,7 +45,7 @@ function mapDispatchToProps(dispatch) {
   return {
     handleDisplayDrawer: () => dispatch(displayNotificationDrawer()),
     handleHideDrawer: () => dispatch(hideNotificationDrawer()),
-    login: () => dispatch(loginRequest()),
+    login: (email, password) => dispatch(loginRequest(email, password)),
   };
 }
 
@@ -112,7 +112,7 @@ class App extends Component {
           <div className={css(styles['App-body'])}>
             {isLoggedIn === false ? (
               <BodySectionWithMarginBottom title="Log in to continue">
-                <Login logIn={login} />
+                <Login logIn={login(user.email, user.password)} />
               </BodySectionWithMarginBottom>
             ) : (
               <BodySectionWithMarginBottom title="Courses list">

@@ -41,7 +41,6 @@ export function loginRequest(email, password) {
           if (response.ok) {
             dispatch(loginSuccess());
           } else {
-            console.log('response is not ok');
             dispatch(loginFailure());
           }
         });

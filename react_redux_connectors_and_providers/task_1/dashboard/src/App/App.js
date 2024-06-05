@@ -52,7 +52,6 @@ class App extends Component {
     super(props);
 
     this.state = {
-      displayDrawer: false,
       user: {
         email: '',
         password: '',
@@ -64,13 +63,16 @@ class App extends Component {
         {id: 2, type: "urgent", value: "New resume available"},
         {id: 3, html: {__html: getLatestNotification()}, type: "urgent"}
       ],
+      listCourses: [
+        {id: 1, name: 'ES6', credit: 60},
+        {id: 2, name: 'Webpack', credit: 20},
+        {id: 3, name: 'React', credit: 40}
+      ],
     };
 
     this.componentDidMount = this.componentDidMount.bind(this);
     this.componentWillUnmount = this.componentWillUnmount.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
-    this.handleHideDrawer = this.handleHideDrawer.bind(this);
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
     this.markNotificationAsRead = this.markNotificationAsRead.bind(this);
@@ -88,13 +90,6 @@ class App extends Component {
       alert("Logging you out");
       this.logOut();
     }
-  }
-
-  handleDisplayDrawer = () => {
-    this.setState({displayDrawer: true});
-  }
-  handleHideDrawer = () => {
-    this.setState({displayDrawer: false});
   }
 
   logIn(email, password) {
@@ -118,8 +113,8 @@ class App extends Component {
   }
 
   render() {
-    const { user, listNotifications } = this.state;
-    const { displayDrawer, listCourses, handleDisplayDrawer, handleHideDrawer } = this.props;
+    const { user, listNotifications, listCourses } = this.state;
+    const { isLoggedIn, displayDrawer, handleDisplayDrawer, handleHideDrawer } = this.props;
 
     return (
       <AppContext.Provider value={{ user, logOut: this.logOut }}>
@@ -127,11 +122,11 @@ class App extends Component {
           <div className={css(styles['header-notifications'])}>
             <Header />
             <div className="root-notifications">
-              <Notifications listNotifications={listNotifications} displayDrawer={displayDrawer} handleDisplayDrawer={this.handleDisplayDrawer} handleHideDrawer={this.handleHideDrawer} markNotificationAsRead={this.markNotificationAsRead} />
+              <Notifications listNotifications={listNotifications} displayDrawer={displayDrawer} handleDisplayDrawer={handleDisplayDrawer} handleHideDrawer={handleHideDrawer} markNotificationAsRead={this.markNotificationAsRead} />
             </div>
           </div>
           <div className={css(styles['App-body'])}>
-            {user.isLoggedIn === false ? (
+            {isLoggedIn === false ? (
               <BodySectionWithMarginBottom title="Log in to continue">
                 <Login logIn={this.logIn} />
               </BodySectionWithMarginBottom>
@@ -152,17 +147,15 @@ class App extends Component {
 }
 
 App.defaultProps = {
-  listCourses: [
-    {id: 1, name: 'ES6', credit: 60},
-    {id: 2, name: 'Webpack', credit: 20},
-    {id: 3, name: 'React', credit: 40}
-  ],
+  isLoggedIn: false,
   displayDrawer: false,
 }
 
 App.propTypes = {
-  listCourses: PropTypes.arrayOf(CourseShape),
-  displayDrawer: PropTypes.bool,
+  isLoggedIn: PropTypes.bool.isRequired,
+  displayDrawer: PropTypes.bool.isRequired,
+  handleDisplayDrawer: PropTypes.func.isRequired,
+  handleHideDrawer: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

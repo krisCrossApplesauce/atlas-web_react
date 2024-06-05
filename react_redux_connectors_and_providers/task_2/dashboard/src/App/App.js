@@ -15,6 +15,7 @@ import AppContext from './AppContext.js';
 // import uiReducer from '../reducers/uiReducer.js';
 import { displayNotificationDrawer, hideNotificationDrawer } from '../actions/uiActionCreators.js';
 import { connect } from 'react-redux';
+import { loginRequest, logout } from '../actions/uiActionCreators.js';
 
 const styles = StyleSheet.create({
   App: {
@@ -44,6 +45,7 @@ function mapDispatchToProps(dispatch) {
   return {
     handleDisplayDrawer: () => dispatch(displayNotificationDrawer()),
     handleHideDrawer: () => dispatch(hideNotificationDrawer()),
+    login: () => dispatch(loginRequest()),
   };
 }
 
@@ -57,7 +59,6 @@ class App extends Component {
         password: '',
         isLoggedIn: false,
       },
-      logOut: this.logOut,
       listNotifications: [
         {id: 1, type: "default", value: "New course available"},
         {id: 2, type: "urgent", value: "New resume available"},
@@ -73,8 +74,6 @@ class App extends Component {
     this.componentDidMount = this.componentDidMount.bind(this);
     this.componentWillUnmount = this.componentWillUnmount.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.logIn = this.logIn.bind(this);
-    this.logOut = this.logOut.bind(this);
     this.markNotificationAsRead = this.markNotificationAsRead.bind(this);
   }
 
@@ -88,23 +87,8 @@ class App extends Component {
   handleKeyDown = (e) => {
     if (e.ctrlKey && e.key === "h") {
       alert("Logging you out");
-      this.logOut();
+      this.props.logOut();
     }
-  }
-
-  logIn(email, password) {
-    this.setState({user: {
-      email: email,
-      password: password,
-      isLoggedIn: true,
-    }});
-  }
-  logOut() {
-    this.setState({user: {
-      email: '',
-      password: '',
-      isLoggedIn: false,
-    }});
   }
 
   markNotificationAsRead(id) {
@@ -114,10 +98,10 @@ class App extends Component {
 
   render() {
     const { user, listNotifications, listCourses } = this.state;
-    const { isLoggedIn, displayDrawer, handleDisplayDrawer, handleHideDrawer } = this.props;
+    const { isLoggedIn, displayDrawer, handleDisplayDrawer, handleHideDrawer, login, logout } = this.props;
 
     return (
-      <AppContext.Provider value={{ user, logOut: this.logOut }}>
+      <AppContext.Provider value={{ user, logOut: logout }}>
         <div className={css(styles.App)}>
           <div className={css(styles['header-notifications'])}>
             <Header />
@@ -128,7 +112,7 @@ class App extends Component {
           <div className={css(styles['App-body'])}>
             {isLoggedIn === false ? (
               <BodySectionWithMarginBottom title="Log in to continue">
-                <Login logIn={this.logIn} />
+                <Login logIn={login} />
               </BodySectionWithMarginBottom>
             ) : (
               <BodySectionWithMarginBottom title="Courses list">
@@ -149,6 +133,7 @@ class App extends Component {
 App.defaultProps = {
   isLoggedIn: false,
   displayDrawer: false,
+  logout: () => {},
 }
 
 App.propTypes = {
@@ -156,6 +141,8 @@ App.propTypes = {
   displayDrawer: PropTypes.bool.isRequired,
   handleDisplayDrawer: PropTypes.func.isRequired,
   handleHideDrawer: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

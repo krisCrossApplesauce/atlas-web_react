@@ -9,12 +9,12 @@ import Footer from '../Footer/Footer';
 import CourseList from '../CourseList/CourseList';
 import { StyleSheetTestUtils } from 'aphrodite';
 import { fromJS } from 'immutable';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import { createStore } from 'redux';
+// import thunk from 'redux-thunk';
 import uiReducer from '../reducers/uiReducer.js';
-import { Provider } from'react-redux';
+import { Provider } from 'react-redux';
 
-const store = createStore(uiReducer, applyMiddleware(thunk));
+const store = createStore(uiReducer);
 
 global.document = {
     addEventListener: jest.fn(),

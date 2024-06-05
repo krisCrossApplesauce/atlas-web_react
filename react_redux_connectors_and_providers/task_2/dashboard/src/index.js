@@ -8,7 +8,6 @@ import uiReducer from './reducers/uiReducer.js';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-// import { loginRequest, logout } from './actions/uiActionCreators.js';
 
 const store = createStore(uiReducer, applyMiddleware(thunk));
 

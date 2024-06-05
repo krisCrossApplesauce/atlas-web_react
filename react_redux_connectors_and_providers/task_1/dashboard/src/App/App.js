@@ -13,6 +13,7 @@ import BodySection from '../BodySection/BodySection.js';
 import { css, StyleSheet } from 'aphrodite';
 import AppContext from './AppContext.js';
 // import uiReducer from '../reducers/uiReducer.js';
+import { displayNotificationDrawer, hideNotificationDrawer } from '../actions/uiActionCreators.js';
 import { connect } from 'react-redux';
 
 const styles = StyleSheet.create({
@@ -36,6 +37,13 @@ export function mapStateToProps(state) {
   return {
     isLoggedIn: state.get('isUserLoggedIn'),
     displayDrawer: state.get('isNotificationDrawerVisible'),
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    handleDisplayDrawer: () => dispatch(displayNotificationDrawer()),
+    handleHideDrawer: () => dispatch(hideNotificationDrawer()),
   };
 }
 
@@ -111,7 +119,7 @@ class App extends Component {
 
   render() {
     const { user, listNotifications } = this.state;
-    const { displayDrawer, listCourses } = this.props;
+    const { displayDrawer, listCourses, handleDisplayDrawer, handleHideDrawer } = this.props;
 
     return (
       <AppContext.Provider value={{ user, logOut: this.logOut }}>
@@ -157,4 +165,4 @@ App.propTypes = {
   displayDrawer: PropTypes.bool,
 };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

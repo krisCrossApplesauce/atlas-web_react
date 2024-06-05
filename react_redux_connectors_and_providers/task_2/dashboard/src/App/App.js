@@ -41,13 +41,11 @@ export function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    handleDisplayDrawer: () => dispatch(displayNotificationDrawer()),
-    handleHideDrawer: () => dispatch(hideNotificationDrawer()),
-    login: (email, password) => dispatch(loginRequest(email, password)),
-  };
-}
+const mapDispatchToProps = {
+  handleDisplayDrawer: displayNotificationDrawer,
+  handleHideDrawer: hideNotificationDrawer,
+  login: loginRequest,
+};
 
 class App extends Component {
   constructor(props) {
@@ -101,7 +99,7 @@ class App extends Component {
     const { isLoggedIn, displayDrawer, handleDisplayDrawer, handleHideDrawer, login, logout } = this.props;
 
     return (
-      <AppContext.Provider value={{ user, logOut: logout }}>
+      <AppContext.Provider value={{ user: user, logOut: logout }}>
         <div className={css(styles.App)}>
           <div className={css(styles['header-notifications'])}>
             <Header />
@@ -112,7 +110,7 @@ class App extends Component {
           <div className={css(styles['App-body'])}>
             {isLoggedIn === false ? (
               <BodySectionWithMarginBottom title="Log in to continue">
-                <Login logIn={login(user.email, user.password)} />
+                <Login logIn={login} />
               </BodySectionWithMarginBottom>
             ) : (
               <BodySectionWithMarginBottom title="Courses list">

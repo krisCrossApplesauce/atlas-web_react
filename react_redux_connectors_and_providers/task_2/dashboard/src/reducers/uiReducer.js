@@ -4,7 +4,11 @@ import { Map } from 'immutable';
 const initialState = Map({
     isNotificationDrawerVisible: false,
     isUserLoggedIn: false,
-    user: {},
+    user: {
+        email: '',
+        password: '',
+        isLoggedIn: false,
+    },
 });
 
 function uiReducer(state = initialState, action) {

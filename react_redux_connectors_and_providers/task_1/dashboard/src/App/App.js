@@ -33,7 +33,10 @@ const styles = StyleSheet.create({
 });
 
 export function mapStateToProps(state) {
-  return { isLoggedIn: state.get('isUserLoggedIn') };
+  return {
+    isLoggedIn: state.get('isUserLoggedIn'),
+    displayDrawer: state.get('isNotificationDrawerVisible'),
+  };
 }
 
 class App extends Component {
@@ -107,8 +110,8 @@ class App extends Component {
   }
 
   render() {
-    const { displayDrawer, user, listNotifications } = this.state;
-    const { listCourses } = this.props;
+    const { user, listNotifications } = this.state;
+    const { displayDrawer, listCourses } = this.props;
 
     return (
       <AppContext.Provider value={{ user, logOut: this.logOut }}>
@@ -146,10 +149,12 @@ App.defaultProps = {
     {id: 2, name: 'Webpack', credit: 20},
     {id: 3, name: 'React', credit: 40}
   ],
+  displayDrawer: false,
 }
 
 App.propTypes = {
   listCourses: PropTypes.arrayOf(CourseShape),
+  displayDrawer: PropTypes.bool,
 };
 
 export default connect(mapStateToProps)(App);

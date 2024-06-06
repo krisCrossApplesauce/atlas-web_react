@@ -46,7 +46,8 @@ const testState = Map({
       type: "urgent",
       value: "New data available"
     }
-  ]).entities.notifications
+  ]).entities.notifications,
+  loading: false,
 });
 
 describe("tests notificationReducer", () => {
@@ -74,7 +75,8 @@ describe("tests notificationReducer", () => {
           type: "urgent",
           value: "New data available"
         }
-      ]).entities.notifications
+      ]).entities.notifications,
+      loading: false,
     });
   });
 
@@ -102,7 +104,8 @@ describe("tests notificationReducer", () => {
           type: "urgent",
           value: "New data available"
         }
-      ]).entities.notifications
+      ]).entities.notifications,
+      loading: false,
     });
   });
 
@@ -130,7 +133,8 @@ describe("tests notificationReducer", () => {
           type: "urgent",
           value: "New data available"
         }
-      ]).entities.notifications
+      ]).entities.notifications,
+      loading: false,
     });
   });
 });

@@ -10,6 +10,7 @@ describe("tests for rootReducer", () => {
             notifications: Map({
                 notifications: [],
                 filter: NotificationTypeFilters.DEFAULT,
+                loading: false,
             }),
             ui: Map({
                 isNotificationDrawerVisible: false,

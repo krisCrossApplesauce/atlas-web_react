@@ -1,4 +1,4 @@
-import { MARK_AS_READ, SET_TYPE_FILTER, FETCH_NOTIFICATIONS_SUCCESS } from "./notificationActionTypes";
+import { MARK_AS_READ, SET_TYPE_FILTER, FETCH_NOTIFICATIONS_SUCCESS, SET_LOADING_STATE } from "./notificationActionTypes";
 
 export const markAsRead = (index) => ({
   type: MARK_AS_READ,

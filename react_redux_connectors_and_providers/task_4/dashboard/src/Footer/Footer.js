@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 function mapStateToProps(state) {
   return {
-    user: state.get('user'),
+    user: state.ui.get('user'),
   };
 }
 
